@@ -35,13 +35,13 @@ public class hello {
     @GetMapping("/albums")
     public String album( Model model) {
        albums a1=new albums("My Beautiful Dark Twisted Fantasy","kanye west",5,500,"https://upload.wikimedia.org/wikipedia/en/thumb/b/be/MBDTF_ALT.jpg/220px-MBDTF_ALT.jpg");
-        albums a2=new albums("My ","kanye west",5,50000,"https://image.shutterstock.com/image-vector/retro-covers-set-colorful-modernism-260nw-465537599.jpg");
+        albums a2=new albums("Yeezus ","kanye west",5,50000,"https://upload.wikimedia.org/wikipedia/en/0/03/Yeezus_album_cover.png");
         albums a3=new albums("My asd","kanye west",10,5000,"https://image.shutterstock.com/image-vector/retro-covers-set-colorful-modernism-260nw-465537599.jpg");
         ArrayList<albums> albumms= new ArrayList<>();
         albumms.add(a1);
         albumms.add(a2);
         albumms.add(a3);
-        model.addAttribute("albumm", albumms);
+        model.addAttribute("album", albumms);
         return "albums";
     }
 }
