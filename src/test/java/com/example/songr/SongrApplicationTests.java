@@ -1,6 +1,6 @@
 package com.example.songr;
 
-import com.example.songr.model.Albums;
+import com.example.songr.model.Album;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -11,7 +11,7 @@ class SongrApplicationTests {
 
 	@Test
 	void contextLoads() {
-		Albums album= new Albums("My Beautiful Dark Twisted Fantasy","kanye west",5,500,"https://upload.wikimedia.org/wikipedia/en/thumb/b/be/MBDTF_ALT.jpg/220px-MBDTF_ALT.jpg");
+		Album album= new Album("My Beautiful Dark Twisted Fantasy","kanye west",5,500,"https://upload.wikimedia.org/wikipedia/en/thumb/b/be/MBDTF_ALT.jpg/220px-MBDTF_ALT.jpg");
 
 		album.setTitle("Title");
 		assertEquals("Title",album.getTitle());
