@@ -1,18 +1,35 @@
 package com.example.songr.model;
 
-public class albums {
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+public class Albums {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
     private String title;
     private String artist;
     private int songCount;
     private long length;
     private String URL;
 
-    public albums(String title, String artist, int songCount, long length, String URL) {
+    public Albums(String title, String artist, int songCount, long length, String URL) {
         this.title = title;
         this.artist = artist;
         this.songCount = songCount;
         this.length = length;
         this.URL = URL;
+    }
+
+    public Albums() {
+
     }
 
     public String getTitle() {
@@ -53,5 +70,15 @@ public class albums {
 
     public void setURL(String URL) {
         this.URL = URL;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+
+
+    public void setLength(long length) {
+        this.length = length;
     }
 }
