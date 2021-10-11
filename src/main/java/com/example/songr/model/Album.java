@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class Albums {
+public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -20,7 +20,7 @@ public class Albums {
     private long length;
     private String URL;
 
-    public Albums(String title, String artist, int songCount, long length, String URL) {
+    public Album(String title, String artist, int songCount, long length, String URL) {
         this.title = title;
         this.artist = artist;
         this.songCount = songCount;
@@ -28,9 +28,10 @@ public class Albums {
         this.URL = URL;
     }
 
-    public Albums() {
+    public Album() {
 
     }
+
 
     public String getTitle() {
         return title;
