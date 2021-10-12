@@ -22,7 +22,15 @@ public class Album {
     private String URL;
 
     @OneToMany(mappedBy = "album")
-   private List<Song> songs;
+    private List<Song> songs;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setSongs(Song song) {
+        songs.add(song);
+    }
 
     public Album(String title, String artist, int songCount, long length, String URL) {
         this.title = title;
@@ -34,10 +42,6 @@ public class Album {
 
     public List<Song> getSongs() {
         return songs;
-    }
-
-    public void setSongs(Song song) {
-       this.songs.add(song);
     }
 
     public Album() {

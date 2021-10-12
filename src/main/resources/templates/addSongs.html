@@ -7,6 +7,7 @@
 </head>
 <body>
 <form th:action="@{/albums/add/__${album.title}__}" method="post">
+
     <!-- boring html inputs! the "name" matches the @RequestParam's on the controller -->
     <p>title</p><input type="text" name="title"/></br>
     <p>trackNumber</p><input type="number" name="trackNumber"/></br>

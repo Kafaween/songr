@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
@@ -36,7 +37,7 @@ private SongsRepository songsRepository;
 //    }
     @GetMapping("/albums")
     public String getBlogAlbums(Model model) {
-        model.addAttribute("album", albumsRepositiry.findAll());
+        model.addAttribute("albums", albumsRepositiry.findAll());
         return "albums";
     }
     @PostMapping("/albums")
@@ -65,12 +66,19 @@ private SongsRepository songsRepository;
         return "addSongs";
     }
     @PostMapping("/albums/add/{title}")
-    public RedirectView createNewSongs(@PathVariable String title,@ModelAttribute Song song) {
+    public RedirectView createNewSongs(@PathVariable String title, @ModelAttribute Song song) {
        Album album= albumsRepositiry.findAlbumByTitle(title);
         song.setAlbum(album);
         album.setSongs(song);
         albumsRepositiry.save(album);
         songsRepository.save(song);
-        return new RedirectView("albums");
+
+        return new RedirectView("/albums");
     }
+//    @GetMapping("/goToViewPage")
+//    public ModelAndView passParametersWithModelAndView() {
+//        ModelAndView modelAndView = new ModelAndView("viewPage");
+//        modelAndView.addObject("message", "Baeldung");
+//        return modelAndView;
+//    }
 }

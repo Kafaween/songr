@@ -16,7 +16,7 @@
                         <h5 th:text="'Title:  '+'   '+${song.title}" class="card-title" name="title"></h5>
                         <p th:text="${'artist:  '+'  '+song.trackNumber}" class="card-text"></p>
                         <p th:text="${'songCount:  '+'  '+song.length}" class="card-text"><small class="text-muted"></small></p>
-                        <p th:text="'sec:  '+'   '+${song.album}" class="card-text"><small class="text-muted"></small></p>
+                        <p th:text="'title-album:  '+'   '+${song.album.title}" class="card-text"><small class="text-muted"></small></p>
                 </div>
             </div>
         </div>
