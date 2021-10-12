@@ -26,14 +26,14 @@
         </div>
         <div class="col-md-8">
             <div class="card-body">
-                <form action="/albums/{album.title}" method="delete">
                 <h5 th:text="'Title:  '+'   '+${album.title}" class="card-title" name="title"></h5>
                 <p th:text="${'artist:  '+'  '+album.artist}" class="card-text"></p>
                 <p th:text="${'songCount:  '+'  '+album.songCount}" class="card-text"><small class="text-muted"></small></p>
                 <p th:text="'sec:  '+'   '+${album.length}" class="card-text"><small class="text-muted"></small></p>
-
-                    <button type="submit" value=${album.title} class="ui-button" />Delete</button>
-                </form>
+                <p  class="card-text"><small class="text-muted"></small> Songs: </p>
+                <div th:each="song:${album.songs}" class="album">
+                    <p th:text="'sec:  '+'   '+${song.title}" class="card-text"><small class="text-muted"></small></p>
+                </div>
             </div>
         </div>
     </div>

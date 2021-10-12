@@ -1,6 +1,8 @@
 package com.example.songr.controller;
 import com.example.songr.Repository.AlbumsRepositiry;
+import com.example.songr.Repository.SongsRepository;
 import com.example.songr.model.Album;
+import com.example.songr.model.Song;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +16,11 @@ public class Albums {
 @Autowired
     private  AlbumsRepositiry albumsRepositiry;
 
+private SongsRepository songsRepository;
 
+    public Albums(SongsRepository songsRepository) {
+        this.songsRepository = songsRepository;
+    }
 
     //    @GetMapping("/albums")
 //    public String album( Model model) {
@@ -38,9 +44,33 @@ public class Albums {
         albumsRepositiry.save(album);
         return new RedirectView("albums");
     }
-    @DeleteMapping ("/albums/{title}")
-    public RedirectView DeleteAlbums(@PathVariable String title) {
-        albumsRepositiry.deleteAlbumByTitle(title);
+//    @DeleteMapping ("/albums/{title}")
+//    public RedirectView DeleteAlbums(@PathVariable String title) {
+//        albumsRepositiry.deleteAlbumByTitle(title);
+//        return new RedirectView("albums");
+//    }
+
+    @GetMapping("/songs")
+    public String getAllSongs(Model model){
+        model.addAttribute("song",songsRepository.findAll());
+        return "songs";
+    }@GetMapping("/albums/{title}")
+    public String getSingleAlbum(@PathVariable String title,Model model){
+        model.addAttribute("album",albumsRepositiry.findAlbumByTitle(title));
+        return "oneAlbum";
+    }
+    @GetMapping("/albums/add/{title}")
+    public String ViewAdd(@PathVariable String title,Model model){
+        model.addAttribute("album",albumsRepositiry.findAlbumByTitle(title));
+        return "addSongs";
+    }
+    @PostMapping("/albums/add/{title}")
+    public RedirectView createNewSongs(@PathVariable String title,@ModelAttribute Song song) {
+       Album album= albumsRepositiry.findAlbumByTitle(title);
+        song.setAlbum(album);
+        album.setSongs(song);
+        albumsRepositiry.save(album);
+        songsRepository.save(song);
         return new RedirectView("albums");
     }
 }
