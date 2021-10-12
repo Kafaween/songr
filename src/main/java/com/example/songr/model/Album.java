@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Album {
@@ -20,12 +21,27 @@ public class Album {
     private long length;
     private String URL;
 
+    @OneToMany(mappedBy = "album")
+    private List<Song> songs;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setSongs(Song song) {
+        songs.add(song);
+    }
+
     public Album(String title, String artist, int songCount, long length, String URL) {
         this.title = title;
         this.artist = artist;
         this.songCount = songCount;
         this.length = length;
         this.URL = URL;
+    }
+
+    public List<Song> getSongs() {
+        return songs;
     }
 
     public Album() {
